@@ -1,0 +1,52 @@
+// Use case - One source file 
+# 1
+Any project's top most CMakeLists.txt must start by specifying a minimum 
+CMake version using the cmake_minimum_required() command.
+This establishes policy settings and ensures that the following CMake 
+functions are run with a compatible version of CMake.
+
+cmake_minimum_required(VERSION 3.27)
+
+# 2
+To start a project, we use the project() command to set the project name.
+This call is required with every project and should be called soon after
+cmake_minimum_required().
+
+project(LearnCppAndPracticeAlgorithms VERSION 0.1)
+
+# 3
+Finally, the add_executable() command tells CMake to create an executable
+using the specified source code files.
+
+add_executable(LearnCppAndPracticeAlgorithms main.cpp)
+
+// Specifying  the C++ Standard
+CMake has some special variables that are either created behind the scenes 
+or have meaning to CMake when set by project code. Many of these variables
+start with CMAKE_. Avoid this naming convention when creating variables for
+your projects. Two of these special user settable variables are:
+- CMAKE_CXX_STANDARD
+-CMAKE_CXX_STANDARD_REQUIRED
+These may be used together to specify the C++ standard needed to build the project.
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+// Variable in CMake file available to source code
+One way to accomplish this is by using a configured header file.
+We create an input file with one or more variables to replace. These variables
+have special syntax which looks like @VAR@. Then, we use the configure_file()
+command to copy the input file to a given output file and replace these variables with
+the current value of VAR in the CMakelists.txt file.
+While we could edit the version directly in the source code, using this feature is
+preferred since it creates a single source of truth and avoids duplication.
+
+After 'project':
+configure_file(TutorialConfig.h.in TutorialConfig.h)
+Since the configured file will be written into the project binary directory, we must 
+add that directory to the list of paths to search for include files.
+
+NOTE: let's say you do 'project(Exmpl VERSION 1.0)'.
+CMake under the hood will create 2 variables:
+Exmpl_VERSION_MAJOR=1
+Exmpl_VERSION_MINOR=0
