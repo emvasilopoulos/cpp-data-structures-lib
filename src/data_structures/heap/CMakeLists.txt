@@ -1,1 +1,0 @@
-add_library(heap abstract_heap.cpp max_heap.cpp min_heap.cpp)
