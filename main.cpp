@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "data_structures/heap/heap.h"
+#include "data_structures/queue/circular_queue.h"
 
 // using namespace std; // This way you can skip "std::"
 
@@ -16,7 +17,8 @@ int main(int argc, char *argv[]) {
     std::vector<int> v = {10, 4, 2, 6, 7, 1, 0, 14, 2, 6, 14};
     manos_practice::HeapType heapType = manos_practice::HeapType::MAX;
     manos_practice::Heap maxHeap = manos_practice::Heap(v, heapType);
-    
+    manos_practice::MyCircularQueue circularQueue(5);
+
     maxHeap.add(16);
     maxHeap.printHeap();
 }

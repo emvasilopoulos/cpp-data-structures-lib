@@ -10,13 +10,16 @@ endif()
 
 include_directories(include)
 
-add_library(heap 
+add_library(my_heap 
     src/data_structures/heap/heap.cpp
 )
 add_library(heapify
     src/data_structures/heap/heapify.cpp
 )
 
+add_library(my_queue
+    src/data_structures/queue/circular_queue.cpp
+)
 # # Find all *.cpp files except for "abstract_heap", "max_heap", "min_heap" (any that's a library)
 # file(GLOB_RECURSE SOURCES "src/*.cpp")
 # list(REMOVE_ITEM
@@ -28,8 +31,9 @@ add_library(heapify
 add_executable(LearnCppAndPracticeAlgorithms main.cpp)
 
 target_link_libraries(LearnCppAndPracticeAlgorithms 
-    heap
+    my_heap
     heapify
+    my_queue
 )
 target_include_directories(LearnCppAndPracticeAlgorithms
     PUBLIC
